@@ -43,11 +43,13 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/img/L.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/"></a></h1>
+		  <h1 class="header-author"><a href="/">李红彪</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">夫人之相与，俯仰一世</p>
 		
 
 		<nav class="header-menu">
@@ -101,11 +103,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/img/L.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">李红彪</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>夫人之相与，俯仰一世<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -159,7 +163,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
+      <a class="article-title" href="/2023/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">源起</a>
     </h1>
   
 
@@ -172,11 +176,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>内容hahaah</p>
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本博客由开源框架hexo搭建，地址：<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">https://github.com/hexojs/hexo</a></p>
+<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ol>
+<li>下载并安装nodejs（注意：node版本过低可能会导致启动失败）</li>
+<li>安装cnpm<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure></li>
+<li>安装hexo<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+安装完成后，输入<code>hexo -v</code>验证安装成功</li>
+<li>创建博客目录并进入<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></li>
+<li>初始化hexo<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo init</span><br></pre></td></tr></table></figure>
+初始化完成后，<code>blog</code>目录会自动生成一些文件</li>
+<li>启动hexo<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+启动后，访问<code>localhost:4000</code>即可。</li>
+</ol>
 <hr>
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p>内容</p>
-<hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+<h2 id="创建博客文章"><a href="#创建博客文章" class="headerlink" title="创建博客文章"></a>创建博客文章</h2><ol>
+<li>新建文章<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;blog-name&quot;</span><br></pre></td></tr></table></figure>
+可以在目录<code>~/blog/source/_posts</code>下看到创建出来的<code>blog-name.md</code></li>
+<li>编辑上一步生成的.md文件，编辑完成后保存</li>
+<li>清理<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></li>
+<li>生成<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
+<li>重新启动<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="部署远端"><a href="#部署远端" class="headerlink" title="部署远端"></a>部署远端</h2><p>todo…</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty/?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1Yb411a7ty/?spm_id_from=333.999.0.0</a><br><a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a></p>
+
       
 
       
