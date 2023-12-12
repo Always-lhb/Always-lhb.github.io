@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://www.test.com/img/redis%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/redis_14.png">
 <meta property="og:image" content="https://www.test.com/img/redis%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/redis_15.png">
 <meta property="article:published_time" content="2023-11-20T10:56:34.000Z">
-<meta property="article:modified_time" content="2023-12-11T03:33:43.041Z">
+<meta property="article:modified_time" content="2023-12-12T08:13:48.585Z">
 <meta property="article:author" content="Lihb">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -345,15 +345,15 @@
 <li>8核开启6个IO线程</li>
 <li>超过8个IO线程，性能提升已经不大</li>
 </ul>
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><h4 id="1-多线程是为了优化什么而使用的呢？"><a href="#1-多线程是为了优化什么而使用的呢？" class="headerlink" title="1. 多线程是为了优化什么而使用的呢？"></a>1. 多线程是为了优化什么而使用的呢？</h4><ol>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><h3 id="1-多线程是为了优化什么而使用的呢？"><a href="#1-多线程是为了优化什么而使用的呢？" class="headerlink" title="1. 多线程是为了优化什么而使用的呢？"></a>1. 多线程是为了优化什么而使用的呢？</h3><ol>
 <li>充分利用多核CPU的资源，实现并行</li>
 <li>应对CPU的阻塞：包括网络IO、磁盘IO等这类IO的阻塞，还包括一些执行很慢的逻辑操作等</li>
 </ol>
-<h4 id="2-redis为什么选用Reactor单线程模型？"><a href="#2-redis为什么选用Reactor单线程模型？" class="headerlink" title="2. redis为什么选用Reactor单线程模型？"></a>2. redis为什么选用Reactor单线程模型？</h4><p>Reactor单线程模型的最大缺点在于：<code>Acceptor</code>和<code>Handlers</code>共用一个线程，只要某个环节发生阻塞，就会阻塞所有。Handlers是执行业务方法的，最容易发生阻塞。<br>原因就在于Redis作为内存数据库，它的Handlers是可预知的，不会出现像Tomcat那样的自定义业务方法。不过也建议不要在Reids中执行要占用大量时间的命令（keys，hgetall等）。</p>
-<h4 id="3-redis不是号称单线程也有很高的性能么？不是说多路复用技术已经大大的提升了IO利用率了么，为什么还需要多线程？"><a href="#3-redis不是号称单线程也有很高的性能么？不是说多路复用技术已经大大的提升了IO利用率了么，为什么还需要多线程？" class="headerlink" title="3. redis不是号称单线程也有很高的性能么？不是说多路复用技术已经大大的提升了IO利用率了么，为什么还需要多线程？"></a>3. redis不是号称单线程也有很高的性能么？不是说多路复用技术已经大大的提升了IO利用率了么，为什么还需要多线程？</h4><p>主要是因为我们对Redis有着更高的要求。</p>
+<h3 id="2-redis为什么选用Reactor单线程模型？"><a href="#2-redis为什么选用Reactor单线程模型？" class="headerlink" title="2. redis为什么选用Reactor单线程模型？"></a>2. redis为什么选用Reactor单线程模型？</h3><p>Reactor单线程模型的最大缺点在于：<code>Acceptor</code>和<code>Handlers</code>共用一个线程，只要某个环节发生阻塞，就会阻塞所有。Handlers是执行业务方法的，最容易发生阻塞。<br>原因就在于Redis作为内存数据库，它的Handlers是可预知的，不会出现像Tomcat那样的自定义业务方法。不过也建议不要在Reids中执行要占用大量时间的命令（keys，hgetall等）。</p>
+<h3 id="3-redis不是号称单线程也有很高的性能么？不是说多路复用技术已经大大的提升了IO利用率了么，为什么还需要多线程？"><a href="#3-redis不是号称单线程也有很高的性能么？不是说多路复用技术已经大大的提升了IO利用率了么，为什么还需要多线程？" class="headerlink" title="3. redis不是号称单线程也有很高的性能么？不是说多路复用技术已经大大的提升了IO利用率了么，为什么还需要多线程？"></a>3. redis不是号称单线程也有很高的性能么？不是说多路复用技术已经大大的提升了IO利用率了么，为什么还需要多线程？</h3><p>主要是因为我们对Redis有着更高的要求。</p>
 <p>限制Redis性能的主要瓶颈出现在网络IO的处理上，虽然之前采用了多路复用技术，但是遍历读取、解析每个客户端的IO数据是比较耗时的，对这个过程可以采用多线程处理，减少由于网络I&#x2F;O 等待造成的影响，还可以充分利用CPU的多核优势。</p>
 <p>所以，Redis6.0采用多个IO线程来处理网络请求，网络请求的解析可以由其他线程完成，然后把解析后的请求交由主线程进行实际的内存读写。提升网络请求处理的并行度，进而提升整体性能。</p>
-<h4 id="4-在引入多线程之后，如何解决并发带来的线程安全问题呢？"><a href="#4-在引入多线程之后，如何解决并发带来的线程安全问题呢？" class="headerlink" title="4. 在引入多线程之后，如何解决并发带来的线程安全问题呢？"></a>4. 在引入多线程之后，如何解决并发带来的线程安全问题呢？</h4><p>Redis6.0只有在网络请求的接收和解析，以及请求后的数据通过网络返回时，使用了多线程。而数据读写操作还是由单线程来完成的，所以，这样就不会出现并发问题了。</p>
+<h3 id="4-在引入多线程之后，如何解决并发带来的线程安全问题呢？"><a href="#4-在引入多线程之后，如何解决并发带来的线程安全问题呢？" class="headerlink" title="4. 在引入多线程之后，如何解决并发带来的线程安全问题呢？"></a>4. 在引入多线程之后，如何解决并发带来的线程安全问题呢？</h3><p>Redis6.0只有在网络请求的接收和解析，以及请求后的数据通过网络返回时，使用了多线程。而数据读写操作还是由单线程来完成的，所以，这样就不会出现并发问题了。</p>
 
       
 
