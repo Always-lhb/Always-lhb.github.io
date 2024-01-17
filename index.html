@@ -156,6 +156,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-布隆过滤器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/17/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">布隆过滤器</a>
+    </h1>
+  
+
+        
+        <a href="/2024/01/17/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2024-01-17T03:05:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>布隆过滤器实际上是一个很长的二进制向量和一系列哈希函数。它可以用于检索一个元素是否在一个集合中。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="set流程"><a href="#set流程" class="headerlink" title="set流程"></a>set流程</h3><ol>
+<li>设置k个哈希函数(f1, f2, f3, … fk)</li>
+<li>对数据进行哈希，得到k个值(2,6,11, …) </li>
+<li>在Bit Array指定的位置设置为1，如果该位置已经是1则保持不变</li>
+</ol>
+<h3 id="check流程"><a href="#check流程" class="headerlink" title="check流程"></a>check流程</h3><ol>
+<li>使用k个hash函数对数据进行哈希，得到k个值</li>
+<li>在Bit Array上各个位置查看对应的值是否为1</li>
+<li>任何一个值为0，则此元素不存在</li>
+<li>所有的值都为1，则我们认为此元素存在（大概率存在）</li>
+</ol>
+<h2 id="误判率"><a href="#误判率" class="headerlink" title="误判率"></a>误判率</h2><p>不同的数据经过不同的hash函数是有几率映射到同一个位置，所以如果布隆过滤器告诉你某个数据不存在，那么它一定不存在；如果布隆过滤器告诉你某个数据存在，那么它可能存在。</p>
+<h2 id="布隆过滤器计算器"><a href="#布隆过滤器计算器" class="headerlink" title="布隆过滤器计算器"></a>布隆过滤器计算器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://hur.st/bloomfilter/</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/01/17/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ThreadLocal原理和应用场景" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -616,13 +702,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">源起</a>
+      <a class="article-title" href="/2023/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">源起</a>
     </h1>
   
 
         
-        <a href="/2021/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2021-11-17T09:16:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-17</time>
+        <a href="/2023/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2023-11-17T09:16:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-17</time>
 </a>
         
       </header>
@@ -693,7 +779,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2023/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">展开全文 >></a>
         </p>
       
 
@@ -820,11 +906,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
               </li>
             
             <div class="clearfix"></div>
