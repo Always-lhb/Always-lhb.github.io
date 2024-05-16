@@ -6,32 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.test.com">
-  <title>分布式id | Blog of Always-lhb</title>
+  <title>node多版本控制 | Blog of Always-lhb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、需求缘起1、几乎所有的业务系统，都有生成一个记录标识的需求，例如：  消息标识：message-id 订单标识：order-id 课时标识：episode-id  这个记录标识往往就是数据库中的唯一主键，数据库上会建立聚集索引，即在物理存储上以这个字段排序。 2、这个记录标识上的查询，往往又有分页或者排序的业务需求，例如：  拉取最新的100条消息：select message-id or">
+  <meta name="description" content="安装 n（交互式的node版本管理工具）1sudo npm install n -g  查看全部可用版本1n ls-remote --all  安装指定版本1sudo n 10.11.0  查看本地当前node版本1node -v  查看本地所有node版本1n list   切换本地node版本1sudo n 版本号  清除node.js的cache:1sudo npm cache clea">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式id">
-<meta property="og:url" content="https://www.test.com/2024/04/15/%E5%88%86%E5%B8%83%E5%BC%8Fid/index.html">
+<meta property="og:title" content="node多版本控制">
+<meta property="og:url" content="https://www.test.com/2023/02/05/node%E5%A4%9A%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.html">
 <meta property="og:site_name" content="Blog of Always-lhb">
-<meta property="og:description" content="一、需求缘起1、几乎所有的业务系统，都有生成一个记录标识的需求，例如：  消息标识：message-id 订单标识：order-id 课时标识：episode-id  这个记录标识往往就是数据库中的唯一主键，数据库上会建立聚集索引，即在物理存储上以这个字段排序。 2、这个记录标识上的查询，往往又有分页或者排序的业务需求，例如：  拉取最新的100条消息：select message-id or">
+<meta property="og:description" content="安装 n（交互式的node版本管理工具）1sudo npm install n -g  查看全部可用版本1n ls-remote --all  安装指定版本1sudo n 10.11.0  查看本地当前node版本1node -v  查看本地所有node版本1n list   切换本地node版本1sudo n 版本号  清除node.js的cache:1sudo npm cache clea">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/1.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/2.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/3.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/4.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/5.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/6.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/7.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/8.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/9.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/10.png">
-<meta property="og:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/11.png">
-<meta property="article:published_time" content="2024-04-15T09:45:26.000Z">
-<meta property="article:modified_time" content="2024-05-16T06:47:00.879Z">
+<meta property="article:published_time" content="2023-02-05T06:57:47.000Z">
+<meta property="article:modified_time" content="2024-05-16T06:39:44.383Z">
 <meta property="article:author" content="Lihb">
-<meta property="article:tag" content="原理">
+<meta property="article:tag" content="杂项">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.test.com/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog of Always-lhb" type="application/atom+xml">
   
@@ -159,20 +147,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-分布式id" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-node多版本控制" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      分布式id
+      node多版本控制
     </h1>
   
 
         
-        <a href="/2024/04/15/%E5%88%86%E5%B8%83%E5%BC%8Fid/" class="archive-article-date">
-  	<time datetime="2024-04-15T09:45:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-15</time>
+        <a href="/2023/02/05/node%E5%A4%9A%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2023-02-05T06:57:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-05</time>
 </a>
         
       </header>
@@ -181,207 +169,23 @@
       
         <br>
 
-<h2 id="一、需求缘起"><a href="#一、需求缘起" class="headerlink" title="一、需求缘起"></a>一、需求缘起</h2><p>1、几乎所有的业务系统，都有生成一个记录标识的需求，例如：</p>
-<ul>
-<li>消息标识：message-id</li>
-<li>订单标识：order-id</li>
-<li>课时标识：episode-id</li>
-</ul>
-<p>这个记录标识往往就是数据库中的唯一主键，数据库上会建立聚集索引，即在物理存储上以这个字段排序。</p>
-<p>2、这个记录标识上的查询，往往又有分页或者排序的业务需求，例如：</p>
-<ul>
-<li>拉取最新的100条消息：select message-id order by time limit 100;</li>
-<li>拉取最新的100个订单：select order-id order by time limit 100;</li>
-<li>拉取最新的100节课时：select episode-id order by time limit 100;</li>
-</ul>
-<p>所以往往要有一个time字段，并且在time字段上建立普通索引。</p>
-<p>我们都知道普通索引存储的是实际记录的指针，其访问效率比聚集索引慢，如果记录标识在生成时能够基本按照时间有序，则可以省去这个time字段的索引查询：<code>select message-id order by message-id limit 100;</code><br><strong>再次强调，能这么做的前提是，message-id的生成基本是趋势时间递增的。</strong> </p>
-<p>这就引出了记录标识生成的两大核心需求：</p>
-<ul>
-<li>全局唯一</li>
-<li>趋势有序</li>
-</ul>
-<br>
+<h2 id="安装-n（交互式的node版本管理工具）"><a href="#安装-n（交互式的node版本管理工具）" class="headerlink" title="安装 n（交互式的node版本管理工具）"></a>安装 n（交互式的node版本管理工具）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install n -g</span><br></pre></td></tr></table></figure>
 
-<h2 id="二、常见方法"><a href="#二、常见方法" class="headerlink" title="二、常见方法"></a>二、常见方法</h2><h3 id="1-使用数据库的-auto-increment-来生成全局唯一递增ID"><a href="#1-使用数据库的-auto-increment-来生成全局唯一递增ID" class="headerlink" title="1. 使用数据库的 auto_increment 来生成全局唯一递增ID"></a>1. 使用数据库的 auto_increment 来生成全局唯一递增ID</h3><p>优点：</p>
-<ul>
-<li>简单，使用数据库已有的功能（auto-inc锁，特殊的表级别锁；可配置）</li>
-<li>能够保证唯一性</li>
-<li>能够保证递增性</li>
-<li>步长固定</li>
-</ul>
-<br>
+<h2 id="查看全部可用版本"><a href="#查看全部可用版本" class="headerlink" title="查看全部可用版本"></a>查看全部可用版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n ls-remote --all</span><br></pre></td></tr></table></figure>
 
-<p>缺点：</p>
-<ul>
-<li>可用性难以保证：强依赖于DB，数据库常见架构是<code>一主多从 + 读写分离</code>，生成自增ID是写请求，主库挂了就玩不转了</li>
-<li>扩展性差，性能有上限：因为写入是单点，数据库主库的写性能决定ID的生成性能上限，并且难以扩展</li>
-</ul>
-<br>
+<h2 id="安装指定版本"><a href="#安装指定版本" class="headerlink" title="安装指定版本"></a>安装指定版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n 10.11.0</span><br></pre></td></tr></table></figure>
 
-<p>改进方法：</p>
-<ul>
-<li>增加主库，避免写入单点</li>
-<li>数据水平切分，保证各主库生成的ID不重复</li>
-</ul>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/1.png" alt="1"><br>如上图，由1个写库变成N个写库，每个写库设置不同的auto_increment初始值，以及相同的增长步长，以保证每个数据库生成的ID是不同的。改进后的架构保证了可用性，但缺点是：</p>
-<ul>
-<li>系统水平扩展比较困难。比如定义好了步长和机器台数之后，如果要添加机器该怎么做？假设现在只有一台机器发号是1,2,3,4,5（步长是1），这个时候需要扩容机器一台。可以这样做：把第二台机器的初始值设置得比第一台超过很多，比如14（假设在扩容时间之内第一台不可能发到14），同时设置步长为2，那么这台机器下发的号码都是14以后的偶数。然后摘掉第一台，把ID值保留为奇数，比如7，然后修改第一台的步长为2。让它符合我们定义的号段标准，对于这个例子来说就是让第一台以后只能产生奇数。</li>
-<li>丧失了ID生成的“绝对递增性”。这个问题不大，我们的目标是趋势递增，不是绝对递增</li>
-<li>数据库的写压力依然很大，每次生成ID都要访问数据库</li>
-</ul>
-<p>为了解决上述几个问题，引出了第二个常见的方案</p>
-<h3 id="2-单点批量ID生成服务"><a href="#2-单点批量ID生成服务" class="headerlink" title="2. 单点批量ID生成服务"></a>2. 单点批量ID生成服务</h3><p>1）分布式系统之所以难，很重要的原因之一是“没有一个全局时钟，难以保证绝对的时序”，要想保证绝对的时序，还是只能使用单点服务，用本地时钟保证“绝对时序”。<br>2）数据库写压力大，是因为每次生成ID都访问了数据库，可以使用批量的方式降低数据库写压力。</p>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/2.png" alt="2"><br>如上图所述，数据库使用双master保证可用性，数据库中只存储当前ID的最大值，例如0。ID生成服务假设每次批量拉取6个ID，服务访问数据库，将当前ID的最大值修改为5，这样应用访问ID生成服务索要ID，ID生成服务不需要每次访问数据库，就能依次派发0,1,2,3,4,5这些ID了，当ID发完后，再将ID的最大值修改为11，就能再次派发6,7,8,9,10,11这些ID了，于是数据库的压力就降低到原来的1&#x2F;6了。</p>
-<p>优点：</p>
-<ul>
-<li>保证了ID生成的绝对递增有序</li>
-<li>大大的降低了数据库的压力</li>
-</ul>
-<br>
+<h2 id="查看本地当前node版本"><a href="#查看本地当前node版本" class="headerlink" title="查看本地当前node版本"></a>查看本地当前node版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
 
-<p>缺点：</p>
-<ul>
-<li>服务仍然是单点（为了保证绝对递增，必然单点）</li>
-<li>如果服务挂了，服务重启起来之后，继续生成ID可能会不连续，中间出现空洞（服务内存是保存着0,1,2,3,4,5，数据库中max-id是5，分配到3时，服务重启了，下次会从6开始分配，4和5就成了空洞，不过这个问题也不大）</li>
-<li>单点，还是有性能上限，无法进行水平扩展</li>
-</ul>
-<br>
+<h2 id="查看本地所有node版本"><a href="#查看本地所有node版本" class="headerlink" title="查看本地所有node版本"></a>查看本地所有node版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n list </span><br></pre></td></tr></table></figure>
 
-<p>改进方法：单点服务的常用高可用优化方案是“备用服务”，，所以我们能用以下方法优化上述缺点（1）</p>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/3.png" alt="3"><br>如上图，对外提供的服务是主服务，有一个影子服务时刻处于备用状态，当主服务挂了的时候备用服务顶上。这个切换的过程对调用方是透明的，可以自动完成。<br>配置主从复制可以尽可能的增加可用性，但是数据一致性在特殊情况下难以保证。 <strong>主从切换时的不一致可能会导致重复发号</strong> 。</p>
-<p>基于数据库的方案，在数据库迁移、或多数据库版本支持、或分库分表的时候都会面临麻烦！！！</p>
-<h3 id="3-UUID-RFC文档"><a href="#3-UUID-RFC文档" class="headerlink" title="3. UUID RFC文档"></a>3. UUID <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc4122.txt">RFC文档</a></h3><p>上述方案来生成ID，虽然性能大增，但由于是单点系统，总还是存在性能上限的。同时，上述两种方案，不管是数据库还是服务来生成ID，业务方Application都需要进行一次远程调用，比较耗时。有没有一种本地生成ID的方法，即高性能，又时延低呢？</p>
-<p>uuid是一个128bit的数字，也可以表示为32个16进制的字符(32*4&#x3D;128)</p>
-<ul>
-<li>时间戳＋UUID版本号： 分三段占16个字符(60bit+4bit)，</li>
-<li>Clock Sequence号与保留字段：占4个字符(13bit＋3bit)，</li>
-<li>节点标识：占12个字符(48bit)</li>
-</ul>
-<p>例如：f81d4fae-7dec-11d0-a765-00a0c91e6bf6</p>
-<p>实际上，UUID一共有多种算法，能用于TraceId的是：</p>
-<ul>
-<li>version1: 基于时间的算法</li>
-<li>version4: 基于随机数的算法</li>
-</ul>
-<p>version4，是最暴力的做法，也是JDK里的算法，不管原来各个位的含义了，除了少数几个位必须按规范填，其余全部用随机数表达。JDK用SecureRandom生成了16个随机的Byte，用2个long来存储；因为只是两个随机long，并没有从理论上保证不会重复。</p>
-<p>优点：</p>
-<ul>
-<li>本地生成ID，不需要进行远程调用，时延低，性能高</li>
-<li>扩展性好，基本可以认为没有性能上限</li>
-</ul>
-<br>
+<h2 id="切换本地node版本"><a href="#切换本地node版本" class="headerlink" title="切换本地node版本"></a>切换本地node版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n 版本号</span><br></pre></td></tr></table></figure>
 
-<p>缺点：</p>
-<ul>
-<li>uuid是无序的，无法保证趋势递增</li>
-<li>MySQL官方有明确的建议主键要尽量越短越好，128bit长度的UUID不符合要求。</li>
-<li>不适合作为MySQL索引，如果作为数据库主键，在InnoDB引擎下，UUID的无序性可能会引起数据位置频繁变动（聚集索引，在物理存储上已该字段排序），严重影响性能</li>
-</ul>
-<h3 id="4-取当前毫秒数"><a href="#4-取当前毫秒数" class="headerlink" title="4. 取当前毫秒数"></a>4. 取当前毫秒数</h3><p>uuid是一个本地算法，生成性能高，但无法保证趋势递增，且作为字符串ID检索效率低，有没有一种能保证递增的本地算法呢？<br>取当前毫秒数是一种常见方案：uint64 ID &#x3D; GenTimeMS();</p>
-<p>优点：</p>
-<ul>
-<li>本地生成ID，不需要进行远程调用，时延低</li>
-<li>生成的ID趋势递增</li>
-<li>生成的ID是整数，建立索引后查询效率高</li>
-</ul>
-<br>
+<h2 id="清除node-js的cache"><a href="#清除node-js的cache" class="headerlink" title="清除node.js的cache:"></a>清除node.js的cache:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm cache clean -f</span><br></pre></td></tr></table></figure>
 
-<p>缺点：</p>
-<ul>
-<li>如果并发量超过1000，会生成重复的ID</li>
-</ul>
-<p>这个缺点无法接受，不能保证ID的唯一性。当然，使用微秒可以降低冲突概率，但每秒最多只能生成100W个ID，再多的话就一定会冲突了，所以使用微秒并不从根本上解决问题。</p>
-<h3 id="5-类snowflake算法-https-github-com-twitter-snowflake"><a href="#5-类snowflake算法-https-github-com-twitter-snowflake" class="headerlink" title="5. 类snowflake算法 https://github.com/twitter/snowflake"></a>5. 类snowflake算法 <a target="_blank" rel="noopener" href="https://github.com/twitter/snowflake">https://github.com/twitter/snowflake</a></h3><p>snowflake是twitter开源的分布式ID生成算法，其核心思想是：一个long型的ID，使用其中41bit作为毫秒数，10bit作为机器编号，12bit作为毫秒内序列号。这个算法单机每秒内理论上最多可以生成1000*(2^12)，也就是400W的ID，完全能满足业务的需求。</p>
-<p>借鉴snowflake的思想，结合各公司的业务逻辑和并发量，可以实现自己的分布式ID生成算法。</p>
-<p><strong>举例：</strong> 假设公司ID生成器服务的需求如下：</p>
-<ul>
-<li>单机高峰并发量小于1W，预计未来5年单机高峰并发量小于10W</li>
-<li>有2个机房，预计未来5年机房数量小于4个</li>
-<li>每个机房机器数小于100台</li>
-<li>目前有5个业务线有ID生成需求，预计未来业务线数量小于10个</li>
-</ul>
-<p>分析过程如下：</p>
-<ul>
-<li>假设系统至少运行10年，那至少需要10 * 365 * 24 * 3600 * 1000 毫秒，即预留39bit给毫秒数</li>
-<li>每秒的单机高峰并发量小于10W，每毫秒的单机高峰并发量小于100，即预留7bit给每毫秒内序列号</li>
-<li>5年内机房数小于4个，预留2bit给机房标识</li>
-<li>每个机房小于100台机器，预留7bit给每个机房内的服务器标识</li>
-<li>业务线小于10个，预留4bit给业务线标识</li>
-</ul>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/4.png" alt="4"></p>
-<p>这样设计的64bit标识，可以保证：</p>
-<ul>
-<li>每个业务线、每个机房、每个机器生成的ID都是不同的</li>
-<li>同一个机器，每个毫秒内生成的ID都是不同的</li>
-<li>同一个机器，同一个毫秒内，以序列号区分保证生成的ID是不同的</li>
-<li>将毫秒数放在最高位，保证生成的ID是趋势递增的</li>
-</ul>
-<br>
+<h2 id="删除本地某版本"><a href="#删除本地某版本" class="headerlink" title="删除本地某版本"></a>删除本地某版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n rm 版本号</span><br></pre></td></tr></table></figure>
 
-<p>优点：</p>
-<ul>
-<li>高性能</li>
-<li>整体按照时间有序</li>
-<li>在整个分布式系统中不会产生ID碰撞</li>
-<li>可以根据自身业务特性分配bit位，非常灵活</li>
-</ul>
-<br>
-
-<p>缺点：</p>
-<ul>
-<li>每台服务器分配的ID是绝对递增的，但从全局看，由于没有一个全局时钟，生成的ID只是趋势递增的</li>
-<li>ID虽然有序，但是不连续</li>
-<li>强依赖于时钟，如果时钟回退，则会造成重复ID</li>
-</ul>
-<br>
-
-<p>时钟同步问题解决：</p>
-<ul>
-<li>关闭系统NTP同步，这样就不会产生时钟调整</li>
-<li>在时钟回拨这段时间，不生成ID，直接返回ERROR_CODE，直到时钟追上，恢复服务</li>
-<li>如果遇到超过容忍限度的回拨，上报报警系统，并把自身从集群节点中摘除</li>
-</ul>
-<br>
-
-<p>最后一个容易忽略的问题：<br>生成的ID在数据量大时往往需要分库分表，这些ID经常作为取模分库分表的依据，为了分库分表后数据均匀，ID生成往往有“取模随机性”的需求，所以我们通常把每秒内的序列号放在ID的最末位。<br>又如果，我们在跨毫秒时，序列号总是归0，会使得序列号为0的ID比较多，导致生成的ID取模后不均匀。解决方法是，序列号不是每次都归0，而是归一个0到9的随机数。</p>
-<h2 id="三、一些成熟产品"><a href="#三、一些成熟产品" class="headerlink" title="三、一些成熟产品"></a>三、一些成熟产品</h2><h3 id="美团Leaf：https-github-com-zhuzhong-idleaf"><a href="#美团Leaf：https-github-com-zhuzhong-idleaf" class="headerlink" title="美团Leaf：https://github.com/zhuzhong/idleaf"></a>美团Leaf：<a target="_blank" rel="noopener" href="https://github.com/zhuzhong/idleaf">https://github.com/zhuzhong/idleaf</a></h3><p>Leaf这个名字是来自德国哲学家、数学家莱布尼茨的一句话：There are no two identical leaves in the world.； “世界上没有两片相同的树叶”</p>
-<h4 id="Leaf-segment数据库方案"><a href="#Leaf-segment数据库方案" class="headerlink" title="Leaf-segment数据库方案"></a>Leaf-segment数据库方案</h4><p>批量获取，每次获取一个segment(step决定大小)号段的值。用完之后再去数据库获取新的号段，可以大大的减轻数据库的压力。 - 各个业务不同的发号需求用biz_tag字段来区分，每个biz-tag的ID获取相互隔离，互不影响。</p>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/5.png" alt="5"><br>重要字段说明：biz_tag用来区分业务，max_id表示该biz_tag目前所被分配的ID号段的最大值，step表示每次分配的号段长度。</p>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/6.png" alt="6"><br>缺点：</p>
-<ul>
-<li>Leaf 取号段的时机是在号段消耗完的时候进行的，也就意味着号段临界点的ID下发时间取决于下一次从DB取回号段的时间，并且在这期间进来的请求也会因为DB号段没有取回来，导致线程阻塞。如果请求DB的时候网络发生抖动，或者DB发生慢查询就会导致整个系统的响应时间变慢。</li>
-<li>DB宕机会造成整个系统不可用。</li>
-</ul>
-<p> <strong>优化一</strong> ：双buffer优化：即当号段消费到某个点时就异步的把下一个号段加载到内存中。</p>
-<p>当前号段已下发10%时，如果下一个号段未更新，则另启一个更新线程去更新下一个号段。当前号段全部下发完后，如果下个号段准备好了则切换到下个号段为当前segment接着下发，循环往复。</p>
-<p>每个biz-tag都有消费速度监控，通常推荐segment长度设置为服务高峰期发号QPS的600倍（10分钟），这样即使DB宕机，Leaf仍能持续发号10-20分钟不受影响。</p>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/7.png" alt="7"></p>
-<p> <strong>优化二</strong> ：高可用容灾<br><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/8.png" alt="8"></p>
-<h4 id="Leaf-snowflake数据库方案"><a href="#Leaf-snowflake数据库方案" class="headerlink" title="Leaf-snowflake数据库方案"></a>Leaf-snowflake数据库方案</h4><p>Leaf-snowflake方案完全沿用snowflake方案的bit位设计，即是“1+41+10+12”的方式组装ID号</p>
-<p>Leaf-snowflake是按照下面几个步骤启动的：</p>
-<ol>
-<li>启动Leaf-snowflake服务，连接Zookeeper，在leaf_forever父节点下检查自己是否已经注册过（是否有该顺序子节点）。</li>
-<li>如果有注册过直接取回自己的workerID（zk顺序节点生成的int类型ID号），启动服务。</li>
-<li>如果没有注册过，就在该父节点下面创建一个持久顺序节点，创建成功后取回顺序号当做自己的workerID号，启动服务。</li>
-</ol>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/9.png" alt="9"></p>
-<h5 id="弱依赖ZooKeeper"><a href="#弱依赖ZooKeeper" class="headerlink" title="弱依赖ZooKeeper"></a>弱依赖ZooKeeper</h5><p>除了每次会去ZK拿数据以外，也会在本机文件系统上缓存一个workerID文件。当ZooKeeper出现问题，恰好机器出现问题需要重启时，能保证服务能够正常启动。</p>
-<h5 id="解决时钟问题"><a href="#解决时钟问题" class="headerlink" title="解决时钟问题"></a>解决时钟问题</h5><p>因为这种方案依赖时间，如果机器的时钟发生了回拨，那么就会有可能生成重复的ID号，需要解决时钟回退的问题。</p>
-<p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/10.png" alt="10"><br>服务启动时首先检查自己是否写过ZooKeeper leaf_forever(PERSISTENT_SEQUENTIAL)节点：</p>
-<ol>
-<li>若写过，则用自身系统时间与leaf_forever&#x2F;${self}节点记录时间做比较，若小于leaf_forever&#x2F;${self}时间则认为机器时间发生了大步长回拨，服务启动失败并报警。</li>
-<li>若未写过，证明是新服务节点，直接创建持久节点leaf_forever&#x2F;${self}并写入自身系统时间，接下来综合对比其余Leaf节点的系统时间来判断自身系统时间是否准确，具体做法是取leaf_temporary下的所有临时节点(所有运行中的Leaf-snowflake节点)的服务IP：Port，然后通过RPC请求得到所有节点的系统时间，计算sum(time)&#x2F;nodeSize。</li>
-<li>若abs( 系统时间-sum(time)&#x2F;nodeSize ) &lt; 阈值，认为当前系统时间准确，正常启动服务，同时写临时节点leaf_temporary&#x2F;${self} 维持租约。</li>
-<li>否则认为本机系统时间发生大步长偏移，启动失败并报警。</li>
-<li>每隔一段时间(3s)上报自身系统时间写入leaf_forever&#x2F;${self}。</li>
-</ol>
-<h3 id="小米chronos：https-github-com-XiaoMi-chronos"><a href="#小米chronos：https-github-com-XiaoMi-chronos" class="headerlink" title="小米chronos：https://github.com/XiaoMi/chronos"></a>小米chronos：<a target="_blank" rel="noopener" href="https://github.com/XiaoMi/chronos">https://github.com/XiaoMi/chronos</a></h3><p><img src="/img/%E5%88%86%E5%B8%83%E5%BC%8Fid/11.png" alt="11"><br>Chronos，在古希腊语意为 <strong>时间</strong> ，是实现 <strong>高可用</strong> 、 <strong>高性能</strong> 、 <strong>提供全局唯一而且严格单调递增timestamp</strong> 的服务。</p>
-<p>Chronos采用主备架构，依赖ZooKeeper实现选主。</p>
-<p>全局只有唯一的ChronosServer提供服务，分配的timestamp保证严格单调递增。</p>
-<p>ChronosServer启动时将自己的信息写到ZooKeeper的Master临时节点上，如果主服务器已经存在，那么就记录到BackupServers节点上。一旦Master临时节点消失(主服务器发生failover)，所有备服务器收到ZooKeeper通知后参与新一轮的选主，保证最终只有一个新的主服务器接替服务。</p>
-<p>ChronosClient启动时，通过访问ZooKeeper获得当前的主ChronosServer地址，连接该服务器后就可以发送Thrift RPC请求了。一旦主服务器发生failover，客户端请求失败，它会自动到ZooKeeper获得新的主ChronosServer地址重新建立连接。</p>
-<h3 id="百度uid-generator：https-github-com-baidu-uid-generator"><a href="#百度uid-generator：https-github-com-baidu-uid-generator" class="headerlink" title="百度uid-generator：https://github.com/baidu/uid-generator"></a>百度uid-generator：<a target="_blank" rel="noopener" href="https://github.com/baidu/uid-generator">https://github.com/baidu/uid-generator</a></h3><p>UidGenerator是Java实现的, 基于Snowflake算法的唯一ID生成器。</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>目前电脑上安装了两个版本的node<br>node&#x2F;10.11.0（公司项目所需版本）<br>node&#x2F;20.9.0（个人博客所需版本）</p>
 
       
 
@@ -416,7 +220,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
         		</li>
       		
 		</ul>
@@ -472,7 +276,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.test.com/2024/04/15/%E5%88%86%E5%B8%83%E5%BC%8Fid/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.test.com/2023/02/05/node%E5%A4%9A%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -486,18 +290,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2024/05/16/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/05/06/github%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          一致性哈希原理
+          如何使用github高效地检索开源项目
         
       </div>
     </a>
   
   
-    <a href="/2024/02/11/mp4%E8%BD%AChls/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MP4转HLS</div>
+    <a href="/2023/01/17/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">布隆过滤器</div>
       <i class="icon-circle-right"></i>
     </a>
   
