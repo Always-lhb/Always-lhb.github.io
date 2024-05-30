@@ -144,6 +144,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-缓存穿透、击穿、雪崩" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/05/16/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9/">缓存穿透、击穿、雪崩</a>
+    </h1>
+  
+
+        
+        <a href="/2024/05/16/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9/" class="archive-article-date">
+  	<time datetime="2024-05-16T10:12:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>当查询Redis中没有的数据时，该查询会下沉到数据库层，同时数据库层也没有该数据，当这种情况大量出现或被恶意攻击时，接口的访问全部透过Redis访问数据库，而数据库中也没有这些数据，我们称这种现象为”缓存穿透”。<br><img src="/img/%E7%BC%93%E5%AD%98/1.png" alt="1"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ul>
+<li>在接口访问层对用户做校验，如接口传参、登陆状态、n秒内访问接口的次数；</li>
+<li>利用布隆过滤器，将数据库层有的数据key存储在位数组中，以判断访问的key在底层数据库中是否存在；<ul>
+<li>如果Redis内不存在该数据，则通过布隆过滤器判断数据是否在底层数据库内；</li>
+<li>如果布隆过滤器告诉我们该key在底层库内不存在，则直接返回null给客户端即可，避免了查询底层数据库的动作；</li>
+<li>如果布隆过滤器告诉我们该key极有可能在底层数据库内存在，那么查询底层数据库<br><img src="/img/%E7%BC%93%E5%AD%98/2.png" alt="2"></li>
+</ul>
+</li>
+</ul>
+<h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>当Redis中热点数据key失效时，大量访问同时请求这个数据，就会将查询下沉到数据库层，此时数据库层的负载压力会骤增，我们称这种现象为”缓存击穿”。<br><img src="/img/%E7%BC%93%E5%AD%98/3.png" alt="3"></p>
+<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><ul>
+<li>延长热点key的过期时间或者设置永不过期；</li>
+<li>利用互斥锁保证同一时刻只有一个客户端可以查询底层数据库的这个数据，一旦查到数据就缓存至Redis内，避免其他客户端请求同时穿过Redis访问底层数据库；<br><img src="/img/%E7%BC%93%E5%AD%98/4.png" alt="4"></li>
+</ul>
+<h2 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>Redis中大量的key几乎同时过期，然后大量并发查询穿过redis打到底层数据库上，此时数据库层的负载压力会骤增，我们称这种现象为”缓存雪崩”。<br><img src="/img/%E7%BC%93%E5%AD%98/5.png" alt="5"></p>
+<h3 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h3><ul>
+<li>分散key的过期时间，设置key的过期时间时添加随机值，防止大量的key在同一时刻过期；</li>
+<li>对于一定要在固定时间让key失效的场景，可以在固定的失效时间时在接口服务端设置随机延时，将请求的时间打散，让一部分查询先将数据缓存起来；</li>
+<li>延长热点key的过期时间或者设置永不过期，这一点和缓存击穿中的方案一样；<br><img src="/img/%E7%BC%93%E5%AD%98/6.png" alt="6"><br><img src="/img/%E7%BC%93%E5%AD%98/7.png" alt="7"></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/05/16/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-一致性哈希原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1290,120 +1385,10 @@
 
 
   
-    <article id="post-博客搭建教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">源起</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2021-11-17T09:16:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本博客由开源框架<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">Hexo</a>搭建</p>
-<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ol>
-<li>下载并安装<a target="_blank" rel="noopener" href="https://nodejs.org/en">nodejs</a>（注意：node版本过低可能会导致启动hexo失败，博主使用的node版本为：v20.9.0）</li>
-<li>利用npm安装cnpm，后续通过cnpm安装其他依赖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure></li>
-<li>安装hexo<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-安装完成后，输入<code>hexo -v</code>验证安装成功</li>
-<li>创建博客目录并进入<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></li>
-<li>初始化hexo<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo init</span><br></pre></td></tr></table></figure>
-初始化完成后，<code>blog</code>目录会自动生成一些文件</li>
-<li>启动hexo server<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-启动后，访问<code>http://localhost:4000</code>即可，可以看到框架自带的第一篇博客<code>hello-world</code></li>
-</ol>
-<h2 id="创建博客文章"><a href="#创建博客文章" class="headerlink" title="创建博客文章"></a>创建博客文章</h2><ol>
-<li>新建文章<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;blog-name&quot;</span><br></pre></td></tr></table></figure>
-可以在目录<code>~/blog/source/_posts</code>下看到创建出来的<code>blog-name.md</code></li>
-<li>编辑上一步生成的.md文件，编辑完成后保存</li>
-<li>清理历史文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></li>
-<li>生成新的静态文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
-<li>重新启动hexo server<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="部署远端"><a href="#部署远端" class="headerlink" title="部署远端"></a>部署远端</h2><p>经过上面步骤，已经可以在本地看到新写的博客文章，接下来我们把它部署到远端，推荐部署到免费的<code>GitHub</code></p>
-<ol>
-<li>登录GitHub，新建仓库，仓库名填入<code>username.github.io</code>。注意仓库名必须遵循这个规则，对于博主来说即<code>Always-lhb.github.io</code></li>
-<li>本地安装github部署插件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/blog</span><br><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure></li>
-<li>配置hexo config文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vi _config.yml </span><br><span class="line"></span><br><span class="line"># 拉到最下方，相应配置如下</span><br><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/Always-lhb/Always-lhb.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></li>
-<li>部署到远端GitHub<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-自动部署，过程中需要输入github账号和密码。注意，github更新了认证方式，当Git提示您输入密码时，请输入您的个人访问令牌。创建个人访问令牌的流程详见下方的<code>备注</code>。<br>部署完成后，在GitHub上查看刚才新建的仓库，可以看到部署上去的静态文件</li>
-<li>浏览器输入地址即可访问<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/Always-lhb</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="更换博客主题"><a href="#更换博客主题" class="headerlink" title="更换博客主题"></a>更换博客主题</h2><p>为个人博客更换一个更美观的主题，博主使用的是<a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">yilia</a></p>
-<ol>
-<li>下载主题<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure></li>
-<li>配置主题<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/blog</span><br><span class="line">vi _config.yml</span><br><span class="line"></span><br><span class="line"># 找到theme所在行，把内容修改为</span><br><span class="line">theme: yilia</span><br></pre></td></tr></table></figure></li>
-<li>清理历史文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></li>
-<li>生成新的静态文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
-<li>重启server<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-重启后，打开本地4000端口，即可查看新主题页面</li>
-<li>确认无误后，推到远端<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><h3 id="创建Git个人访问令牌"><a href="#创建Git个人访问令牌" class="headerlink" title="创建Git个人访问令牌"></a>创建Git个人访问令牌</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Settings -&gt; Developer Settings -&gt; Personal access tokens -&gt; Tokens(classic) -&gt; Generate new token(classic)</span><br></pre></td></tr></table></figure>
-<p>选择token的过期时间和适用范围，点击<code>Generate token</code>即可。个人访问令牌只能看见一次，注意保存好！！！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/17/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
